@@ -1,0 +1,41 @@
+import './App.css';
+import React, { useState } from 'react'
+
+export default function App() {
+  const [place, setPlace] = useState("");
+  const [placeInfo, setPlaceInfo] = useState({});
+
+  
+    
+  const handleFetch = () => {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=5eadc8e08cbd557f581186e7a80fd8ac&units=metric`).then((response) => response.json())
+      .then((data) => setPlaceInfo({
+        temp:data.main.temp,
+        country:data.sys.country
+      }));
+  };
+
+  console.log(placeInfo);
+  return (
+    <div className='App'>
+     
+      <div className="search-input">
+        <input type="text" value={place} onChange={(e) => setPlace(e.target.value)} />
+        <button onClick={handleFetch}>Search</button>
+      </div>
+      <div className="weather-container">
+        <div className="top-part">
+          <h1>{placeInfo.temp}{"°C"}</h1>
+          <h2>{place}{","}{placeInfo.country}</h2>
+          <div className="condition-high-low">
+            {/* <h2>{placeInfo.condition}</h2> */}
+            {/* <h3>Max.Temp : {placeInfo.celcius.high}°C | Min.Temp : {placeInfo.celcius.low}°C</h3> */}
+
+          </div>
+        </div>
+        {/* <h1>{placeInfo.name},{placeInfo.region},{placeInfo.country}</h1> */}
+        {/* <h2>{placeInfo.localtime}</h2> */}
+      </div>
+    </div>
+  )
+}
