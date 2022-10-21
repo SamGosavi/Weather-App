@@ -68,7 +68,7 @@ export default function SearchWeather() {
                                         </button>
                                     </div>
                                 </form>
-                                <div className="bg-dark bg-opacity-50 py-3" style={{height:"110vh"}}>
+                                <div className="bg-dark bg-opacity-50 py-3" style={{height:"80vh"}}>
                                     <h2 className="card-title">{search}{" "}{placeInfo.country}</h2>
                                     <p className="card-text lead">
                                         {day}, {month} {date},{year}
